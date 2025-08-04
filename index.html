@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Retiro - ServiceOne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://serviceone.cl/img/favicon.ico?1735588697" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-content">
+        <div class="logo-container">
+          <a href="https://www.serviceone.cl" target="_blank" title="ServiceOne SPA">
+            <img src="./tienda-logo-1678508457.jpg" alt="ServiceOne SPA" class="logo" />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="form-container">
+      <!-- Barra de progreso -->
+      <div class="progress-bar">
+        <div class="progress-step active" data-step="contacto">
+          <span>1</span>
+          <p>Contacto</p>
+        </div>
+        <div class="progress-step" data-step="retiro">
+          <span>2</span>
+          <p>Retiro</p>
+        </div>
+        <div class="progress-step" data-step="accesos">
+          <span>3</span>
+          <p>Accesos</p>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <form id="retiroForm">
+        <!-- Sección Contacto -->
+        <div id="step-contacto" class="form-step active">
+          <h2><i class="fas fa-user-circle"></i> Datos de Contacto</h2>
+
+          <div class="field-group">
+            <h3>Contacto Principal</h3>
+            <div class="form-columns">
+              <div class="form-column">
+                <label for="empresa">
+                  <i class="fas fa-building"></i> Empresa
+                </label>
+                <input type="text" id="empresa" name="empresa" placeholder="Nombre de la empresa" required>
+
+                <label for="nombre">
+                  <i class="fas fa-user"></i> Nombre y apellido
+                </label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="correo">
+                  <i class="fas fa-envelope"></i> Correo electrónico
+                </label>
+                <input type="email" id="correo" name="correo" required>
+              </div>
+
+              <div class="form-column">
+                <label for="direccion">
+                  <i class="fas fa-map-marker-alt"></i> Dirección completa
+                </label>
+                <textarea id="direccion" name="direccion" required placeholder="Calle, número, piso, área, oficina, departamento"></textarea>
+
+                <label for="telefono">
+                  <i class="fas fa-phone"></i> Teléfono
+                </label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
+          </div>
+        </div>
+        
+        <div class="field-group">
+          <h3>Contacto Backup</h3>
+          <div class="form-columns">
+            <div class="form-column">
+              <label for="nombre_backup">
+                <i class="fas fa-user"></i> Nombre y apellido
+              </label>
+              <input type="text" id="nombre_backup" name="nombre_backup">
+            </div>
+            
+            <div class="form-column">
+              <label for="correo_backup">
+                <i class="fas fa-envelope"></i> Correo electrónico
+              </label>
+              <input type="email" id="correo_backup" name="correo_backup">
+              
+              <label for="telefono_backup">
+                <i class="fas fa-phone"></i> Teléfono
+              </label>
+              <input type="tel" id="telefono_backup" name="telefono_backup">
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn-next" data-next="retiro">Siguiente <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Sección Retiro -->
+      <div id="step-retiro" class="form-step">
+        <h2><i class="fas fa-truck-loading"></i> Detalles del Retiro</h2>
+        
+        <div class="field-group">
+          <!-- Primera fila: Tipo de retiro y Cantidad -->
+          <div class="form-columns">
+            <div class="form-column">
+              <label for="tipo_retiro">
+                <i class="fas fa-print"></i> Tipo de Retiro
+              </label>
+              <select id="tipo_retiro" name="tipo_retiro" required>
+                <option value="">Seleccione...</option>
+                <option value="insumos">Insumos</option>
+                <option value="maquina">Máquina</option>
+              </select>
+            </div>
+            <div class="form-column">
+              <label for="cantidad">
+                <i class="fas fa-calculator"></i> Cantidad a retirar
+              </label>
+              <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+            </div>
+          </div>
+          <!-- Segunda fila: Fecha de retiro y Horario -->
+          <div class="form-columns">
+            <div class="form-column">
+              <label for="fecha_retiro">
+                <i class="fas fa-calendar-alt"></i> Fecha de Retiro
+              </label>
+              <input type="date" id="fecha_retiro" name="fecha_retiro" required>
+            </div>
+            <div class="form-column">
+              <label for="horario_retiro">
+                <i class="fas fa-clock"></i> Horario de Retiro
+              </label>
+              <select id="horario_retiro" name="horario_retiro" required>
+                <option value="">Seleccione...</option>
+                <option value="am">Mañana (9:00 - 12:00)</option>
+                <option value="pm">Tarde (13:00 - 17:00)</option>
+              </select>
+            </div>
+          </div>
+          <!-- Tercera fila: Modelos/Series -->
+          <div class="form-row-full">
+            <label for="modelos_series">
+              <i class="fas fa-barcode"></i> Modelos/Series
+            </label>
+            <textarea id="modelos_series" name="modelos_series" placeholder="Listado de modelos y números de serie"></textarea>
+          </div>
+        </div>
+        
+        <div class="field-group">
+          <h3>Estado de los Productos</h3>
+          <div class="status-options">
+            <label class="status-option">
+              <input type="radio" name="estado" value="operativo" required>
+              <div class="status-icon"><i class="fas fa-check-circle"></i></div>
+              <span>Operativo</span>
+            </label>
+
+            <label class="status-option">
+              <input type="radio" name="estado" value="defectuoso">
+              <div class="status-icon"><i class="fas fa-exclamation-triangle"></i></div>
+              <span>Defectuoso</span>
+            </label>
+
+            <label class="status-option">
+              <input type="radio" name="estado" value="desconocido">
+              <div class="status-icon"><i class="fas fa-question-circle"></i></div>
+              <span>Desconocido</span>
+            </label>
+          </div>
+        </div>
+
+        
+        <div class="field-group">
+          <h3>Accesorios</h3>
+          <label>
+            <input type="checkbox" name="tiene_accesorios" id="tiene_accesorios">
+            ¿Tienen accesorios? (bandeja adicional, stand, finisher, lector de tarjeta)
+          </label>
+          
+          <div id="accesorios_container" class="hidden">
+            <label for="detalle_accesorios">
+              <i class="fas fa-list"></i> Detalle de accesorios (indicar número de serie si corresponde)
+            </label>
+            <textarea id="detalle_accesorios" name="detalle_accesorios" placeholder="serie del accesorio, cuantos accesorios se enviarán, etc."></textarea>
+          </div>
+        </div>
+        
+        <div class="field-group">
+          <h3>Información Adicional</h3>
+          <div class="form-columns">
+            <div class="form-column">
+              <label for="embalado">
+                <i class="fas fa-box"></i> ¿Se encuentra/n embalado/s?
+              </label>
+              <select id="embalado" name="embalado">
+                <option value="">Seleccione...</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+                <option value="parcial">Parcialmente</option>
+              </select>
+              
+              <label for="mantencion">
+                <i class="fas fa-tools"></i> ¿Requieren revisión y/o mantención?
+              </label>
+              <select id="mantencion" name="mantencion">
+                <option value="">Seleccione...</option>
+                <option value="no">No</option>
+                <option value="revision">Solo revisión</option>
+                <option value="mantencion">Revisión y mantención</option>
+              </select>
+            </div>
+            
+            <div class="form-column">
+              <label>
+                <input type="checkbox" name="retiro_masivo" id="retiro_masivo">
+                ¿Es un retiro masivo?
+              </label>
+              
+              <div id="masivo_container" class="hidden">
+                <label>
+                  <input type="checkbox" name="desconectados">
+                  ¿Están desconectados?
+                </label>
+                
+                <label>
+                  <input type="checkbox" name="apilados">
+                  ¿Apilados en un solo lugar?
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn-prev" data-prev="contacto">
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+          <button type="button" class="btn-next" data-next="accesos">
+            Siguiente <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Sección Accesos -->
+      <div id="step-accesos" class="form-step">
+        <h2><i class="fas fa-key"></i> Requisitos de Acceso</h2>
+        
+        <div class="field-group">
+          <h3>Seguridad</h3>
+          <label>
+            <input type="checkbox" name="requiere_epp" id="requiere_epp">
+            ¿Se requieren implementos de seguridad? (EPP)
+          </label>
+          
+          <div id="epp_container" class="hidden">
+            <label for="detalle_epp">
+              <i class="fas fa-hard-hat"></i> Especificar EPP requerido
+            </label>
+            <input type="text" id="detalle_epp"  name="detalle_epp" placeholder ="Ej: zapatos de seguridad, chaleco reflectante, etc">
+          </div>
+          
+          <label for="tipo_transporte">
+            <i class="fas fa-truck"></i> Tipo de transporte permitido para acceso
+          </label>
+          <input type="text" id="tipo_transporte" name="tipo_transporte" placeholder="Ej: Camión, furgón, etc.">
+          
+          <label for="requisitos_seguridad">
+            <i class="fas fa-shield-alt"></i> Requisitos de seguridad exigidos por el cliente
+          </label>
+          <textarea id="requisitos_seguridad" name="requisitos_seguridad" placeholder="Indique los requisitos especiales"></textarea>
+        </div>
+        
+        <div class="field-group">
+          <h3>Logística</h3>
+          <div class="form-columns">
+            <div class="form-column">
+              <label for="estacionamiento">
+                <i class="fas fa-parking"></i> Estacionamiento
+              </label>
+              <select id="estacionamiento" name="estacionamiento">
+                <option value="">Seleccione...</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
+              
+              <div id="estacionamiento_info" class="hidden">
+                <label for="altura_maxima">
+                  <i class="fas fa-ruler-vertical"></i> Altura máxima permitida
+                </label>
+                <input type="number" id="altura_maxima" name="altura_maxima" step="1" min="0" placeholder="en metros">
+              </div>
+            </div>
+            
+            <div class="form-column">
+              <label for="ascensor">
+                <i class="fas fa-elevator"></i> ¿Cuenta con ascensor o montacarga?
+              </label>
+              <select id="ascensor" name="ascensor">
+                <option value="">Seleccione...</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
+              
+              <label for="distancia_maniobra">
+                <i class="fas fa-walking"></i> Distancia aproximada a caminar cargando el equipo (metros)
+              </label>
+              <input type="number" id="distancia_maniobra" name="distancia_maniobra" min="0">
+            </div>
+          </div>
+        </div>
+        
+        <div class="field-group">
+          <h3>Documentación y Destino</h3>
+          <label for="documentacion_requerida">
+            <i class="fas fa-file-alt"></i> Documentación requerida posterior al retiro
+          </label>
+          <textarea id="documentacion_requerida" name="documentacion_requerida" placeholder="Páginas de prueba, contadores, estado de consumibles, etc."></textarea>
+          
+          <label for="destino">
+            <i class="fas fa-warehouse"></i> Destino de los equipos
+          </label>
+          <select id="destino" name="destino">
+            <option value="">Seleccione...</option>
+            <option value="bodega_servicio">Backup (Bodega Servicio)</option>
+            <option value="bodega_almacen">Implementación futura (Bodega Almacén)</option>
+            <option value="scrap">Scrap (Desecho)</option>
+            <option value="otro">Otro</option>
+          </select>
+          
+          <div id="otro_destino_container" class="hidden">
+            <label for="otro_destino">
+              <i class="fas fa-map-pin"></i> Especificar otro destino
+            </label>
+            <input type="text" id="otro_destino" name="otro_destino">
+          </div>
+        </div>
+        
+        <div class="field-group">
+          <label for="observaciones">
+            <i class="fas fa-comment"></i> Observaciones adicionales
+          </label>
+          <textarea id="observaciones" name="observaciones"></textarea>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn-prev" data-prev="retiro">
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane"></i> Enviar Solicitud
+          </button>
+        </div>
+      </div>
+    </form>
+    
+    <div id="mensajeEnviado" class="hidden">
+      <i class="fas fa-check-circle success-icon"></i>
+      <p>¡Datos enviados con éxito!</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; <span id="year"></span> ServiceOne. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="./script.js"></script>
+  <script>
+  const radios = document.querySelectorAll('input[name="estado"]');
+
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.status-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      radio.closest('.status-option').classList.add('selected');
+    });
+  });
+</script>
+
+<!-- Modal de éxito -->
+<div id="successModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <i class="fas fa-check-circle success-icon"></i>
+    <h2>¡Formulario enviado con éxito!</h2>
+    <p>Tus datos han sido recibidos correctamente.</p>
+    <button class="btn-close-modal">Aceptar</button>
+  </div>
+</div>
+
+</body>
+</html>
